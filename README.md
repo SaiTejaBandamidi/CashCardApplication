@@ -24,5 +24,4 @@ The CashCard Application is a Python web application using Flask that allows use
 
    ```bash
    git clone https://github.com/SaiTejaBandamidi/CashCardApplication.git
-
-
+   ```

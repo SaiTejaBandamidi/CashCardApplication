@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #152744;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #welcome-message {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        #side-panel {
+            width: 200px;
+            background-color: #367591;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            color: white;
+        }
+
+        #side-panel a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px 0;
+        }
+
+        #services-submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        #content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        @media screen and (max-width: 600px) {
+            #side-panel {
+                width: 100%;
+                padding: 10px;
+                position: static;
+            }
+
+            #content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Dashboard</h1>
+    </header>
+
+    <div id="side-panel">
+        <a href="#home">Home</a>
+        <a href="#services" onclick="toggleSubMenu()">Services</a>
+        <div id="services-submenu">
+            <a href="{{ url_for('dashboard', username=username, option='check_balance') }}">Check Balance</a>
+            <a href="{{ url_for('dashboard', username=username, option='deposit_money') }}">Deposit Money</a>
+            <a href="{{ url_for('dashboard', username=username, option='withdraw_money') }}">Withdraw Money</a>
+            <a href="{{ url_for('dashboard', username=username, option='add_cash_card') }}">Add Cash Card</a>
+            <a href="{{ url_for('dashboard', username=username, option='remove_cash_card') }}">Remove Cash Card</a>
+            <a href="{{ url_for('dashboard', username=username, option='check_total_balance') }}">Check Total Balance</a>
+            <!-- Add more options as needed -->
+        </div>
+        <a href="{{ url_for('about_us') }}">About Us</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div id="content">
+        <div id="welcome-message">
+            <p>Hello, {{ username }}!</p>
+        </div>
+
+        {% if selected_option == 'check_balance' %}
+            <div id="check-balance-content">
+                <!-- Add content for check_balance option here -->
+                <p>Check Balance Content Goes Here</p>
+            </div>
+        {% elif selected_option == 'deposit_money' %}
+            <div id="deposit-money-content">
+                <!-- Add content for deposit_money option here -->
+                <p>Deposit Money Content Goes Here</p>
+            </div>
+        {% elif selected_option == 'withdraw_money' %}
+            <div id="withdraw-money-content">
+                <!-- Add content for withdraw_money option here -->
+                <p>Withdraw Money Content Goes Here</p>
+            </div>
+        {% elif selected_option == 'add_cash_card' %}
+            <div id="add-cash-card-content">
+                <!-- Add content for add_cash_card option here -->
+                <p>Add Cash Card Content Goes Here</p>
+            </div>
+        {% elif selected_option == 'remove_cash_card' %}
+            <div id="remove-cash-card-content">
+                <!-- Add content for remove_cash_card option here -->
+                <p>Remove Cash Card Content Goes Here</p>
+            </div>
+        {% elif selected_option == 'check_total_balance' %}
+            <div id="check-total-balance-content">
+                <!-- Add content for check_total_balance option here -->
+                <p>Check Total Balance Content Goes Here</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function toggleSubMenu() {
+            var submenu = document.getElementById('services-submenu');
+            submenu.style.display = (submenu.style.display === 'none' || submenu.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
